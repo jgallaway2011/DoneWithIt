@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { jwtDecode } from "jwt-decode";
 import * as Yup from "yup";
 
 import {
@@ -10,7 +9,7 @@ import {
 } from "../components/forms";
 import { Logo, Screen } from "../components";
 import authAPI from "../api/auth";
-import authStorage from "../auth/storage";
+import useAuth from "../auth/useAuth";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().required().email().label("Email"),
@@ -19,13 +18,12 @@ const validationSchema = Yup.object().shape({
 
 function LoginScreen() {
   const [loginFailed, setLoginFailed] = useState(false);
+  const { logIn } = useAuth();
 
   const handleSubmit = async ({ email, password }) => {
     const result = await authAPI.login(email, password);
     if (!result.ok) return setLoginFailed(true);
-    setLoginFailed(false);
-    authContext.setUser(jwtDecode(result.data));
-    authStorage.storeToken(result.data);
+    logIn(result.data);
   };
 
   return (
