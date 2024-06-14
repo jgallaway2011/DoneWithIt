@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "DoneWithIt",
-    "slug": "DoneWithIt",
+    "slug": "donewithit",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./app/assets/photos/icon.png",
@@ -11,7 +11,9 @@
       "resizeMode": "cover",
       "backgroundColor": "#e63c4b"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true
     },
@@ -24,6 +26,14 @@
     "web": {
       "favicon": "./app/assets/photos/favicon.png"
     },
-    "plugins": ["expo-secure-store"]
+    "plugins": [
+      "expo-secure-store"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "830f81c7-4c1e-48e9-80ce-8233233065e6"
+      }
+    },
+    "owner": "jgallaway2011"
   }
 }

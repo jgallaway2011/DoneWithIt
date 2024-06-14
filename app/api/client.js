@@ -4,8 +4,10 @@ import { IP_ADDRESS, PORT } from "@env";
 import authStorage from "../auth/storage";
 import cache from "../utility/cache";
 
+const baseURL = `http://${IP_ADDRESS}:${PORT}/api`;
+
 const apiClient = create({
-  baseURL: `http://${IP_ADDRESS}:${PORT}/api`,
+  baseURL,
 });
 
 apiClient.addAsyncRequestTransform(async (request) => {

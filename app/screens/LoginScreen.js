@@ -8,7 +8,7 @@ import {
   SubmitButton,
 } from "../components/forms";
 import { Logo, Screen } from "../components";
-import authAPI from "../api/auth";
+import { authAPI } from "../api";
 import useAuth from "../auth/useAuth";
 
 const validationSchema = Yup.object().shape({

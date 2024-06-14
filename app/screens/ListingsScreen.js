@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useEffect } from "react";
 import { FlatList, StyleSheet } from "react-native";
 
 import {
@@ -15,7 +15,6 @@ import routes from "../navigation/routes";
 import useAPI from "../hooks/useAPI";
 
 function ListingsScreen({ navigation }) {
-  const { setIsReady } = useContext(AuthContext);
   const getListingsAPI = useAPI(listingsAPI.getListings);
 
   useEffect(() => {
@@ -23,26 +22,28 @@ function ListingsScreen({ navigation }) {
   }, []);
 
   return (
-    <Screen style={styles.screen}>
-      <OfflineNotice />
-      {getListingsAPI.error && (
-        <>
-          <Text>Couldn't retrieve the listings.</Text>
-          <Button title="Retry" onPress={getListingsAPI.request} />
-        </>
-      )}
+    <>
       <ActivityIndicator visible={getListingsAPI.loading} />
-      <FlatList
-        data={getListingsAPI.data}
-        keyExtractor={(listing) => listing.id.toString()}
-        renderItem={({ item }) => (
-          <Card
-            item={{ ...item, subTitle: "$" + item.price }}
-            onPress={() => navigation.navigate(routes.LISTING_DETAILS, item)}
-          />
+      <Screen style={styles.screen}>
+        <OfflineNotice />
+        {getListingsAPI.error && (
+          <>
+            <Text>Couldn't retrieve the listings.</Text>
+            <Button title="Retry" onPress={getListingsAPI.request} />
+          </>
         )}
-      />
-    </Screen>
+        <FlatList
+          data={getListingsAPI.data}
+          keyExtractor={(listing) => listing.id.toString()}
+          renderItem={({ item }) => (
+            <Card
+              item={{ ...item, subTitle: "$" + item.price }}
+              onPress={() => navigation.navigate(routes.LISTING_DETAILS, item)}
+            />
+          )}
+        />
+      </Screen>
+    </>
   );
 }
 

@@ -12,6 +12,7 @@ import AuthNaviagtor from "./app/navigation/AuthNavigator";
 import authStorage from "./app/auth/storage";
 import navigationTheme from "./app/navigation/navigationTheme";
 import { OfflineNotice } from "./app/components";
+import { navigationRef } from "./app/navigation/rootNavigation";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -42,7 +43,7 @@ export default function App() {
     <AuthContext.Provider value={{ user, setIsReady, setUser }}>
       <GestureHandlerRootView style={{ flex: 1 }}>
         <OfflineNotice />
-        <NavigationContainer theme={navigationTheme}>
+        <NavigationContainer ref={navigationRef} theme={navigationTheme}>
           {user ? <AppNavigator /> : <AuthNaviagtor />}
         </NavigationContainer>
       </GestureHandlerRootView>
