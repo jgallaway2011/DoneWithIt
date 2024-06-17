@@ -10,9 +10,9 @@ import {
   Text,
 } from "../components";
 import colors from "../config/colors";
-import listingsAPI from "../api/listings";
+import { listingsAPI } from "../api";
 import routes from "../navigation/routes";
-import useAPI from "../hooks/useAPI";
+import { useAPI } from "../hooks";
 
 function ListingsScreen({ navigation }) {
   const getListingsAPI = useAPI(listingsAPI.getListings);

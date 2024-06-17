@@ -9,7 +9,7 @@ import {
 } from "../components/forms";
 import { ActivityIndicator, Logo, Screen } from "../components";
 import { authAPI, usersAPI } from "../api";
-import useAPI from "../hooks/useAPI";
+import { useAPI } from "../hooks";
 import useAuth from "../auth/useAuth";
 
 const validationSchema = Yup.object().shape({
